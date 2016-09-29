@@ -1,0 +1,11 @@
+{
+  "name": "ufjf-dcc158-2016-3-trb1-terciogarcia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tércio Garcia",
+  "license": "ISC"
+}
