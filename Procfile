@@ -1,1 +1,1 @@
-web:PORT=8888 node index.js
+web: node index.js
