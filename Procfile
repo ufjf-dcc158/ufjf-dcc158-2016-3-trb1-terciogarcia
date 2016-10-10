@@ -1,1 +1,1 @@
-web: node index.js -p 8888
+web: node index.js
