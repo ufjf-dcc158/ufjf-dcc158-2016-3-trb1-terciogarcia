@@ -1,0 +1,21 @@
+td {
+    width: 70px;
+    height: 70px;
+}
+
+.tabuleiro tr:nth-child(even) > td:nth-child(odd),
+.tabuleiro tr:nth-child(odd) > td:nth-child(even) {
+	background: #000;
+} 
+
+.tabuleiro{
+	border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.cavalo{
+	color: blue;
+	font-size: 35pt;
+	width: 100%;
+	text-align: center;
+}
