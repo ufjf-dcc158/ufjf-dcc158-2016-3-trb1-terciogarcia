@@ -28,4 +28,4 @@ function imprimeXadrez(linha, coluna) {
     return xadrez;	
 }
 
-exports.imprimeXadrez = imprimeXadrez;
+module.exports.imprimeXadrez = imprimeXadrez;

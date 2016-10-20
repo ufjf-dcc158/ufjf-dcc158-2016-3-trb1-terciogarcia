@@ -1,6 +1,7 @@
 var url = require('url');
 var queryString = require('querystring');
-var xadrezHtml = require('./xadrezHtml');
+var imprimeXadrez = require('./xadrezHtml').imprimeXadrez;
+var geraXadrezJson = require('./xadrezJson').geraXadrez;
 
 function index(request, response) {
     response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -160,12 +161,7 @@ function xadrez(request, response) {
         linha = parseInt(query.linha);
         coluna = parseInt(query.coluna);
 
-        response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        var xadrez = xadrezHtml.imprimeXadrez(linha, coluna);
-        response.write(xadrez);
-        response.end();
-    }
-    else if (request.method == 'POST') {
+    } else if (request.method == 'POST') {
         var body = "";
         request.on('data', function(data) {
             body = body + data;
@@ -177,13 +173,44 @@ function xadrez(request, response) {
             coluna = dados.coluna;
         });
     }
+    
+    response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+    var xadrez = imprimeXadrez(linha, coluna);
+    response.write(xadrez);
+    response.end();
+}
+
+function xadrezJson(request, response) {
+  var linha, coluna;
+    if (request.method == 'GET') {
+        var query = url.parse(request.url, true).query;
+        linha = parseInt(query.linha);
+        coluna = parseInt(query.coluna); 
+    } else if (request.method == 'POST') {
+        var body = "";
+        request.on('data', function(data) {
+            body = body + data;
+        });
+
+        request.on('end', function() {
+            var dados = queryString.parse(body);
+            linha = dados.linha;
+            coluna = dados.coluna;
+        });
+    }
+
+    response.writeHead(200, {"Content-Type": "application/json"});
+    var xadrez = geraXadrezJson(linha, coluna);
+    response.write(JSON.stringify(xadrez));
+    response.end();
 }
 
 
-exports.index = index;
-exports.notFound = notFound;
-exports.about = about;
-exports.primos = primos;
-exports.random = random;
-exports.equacao = equacao;
-exports.xadrez = xadrez;
+module.exports.index = index;
+module.exports.notFound = notFound;
+module.exports.about = about;
+module.exports.primos = primos;
+module.exports.random = random;
+module.exports.equacao = equacao;
+module.exports.xadrez = xadrez;
+module.exports.xadrezJson = xadrezJson;

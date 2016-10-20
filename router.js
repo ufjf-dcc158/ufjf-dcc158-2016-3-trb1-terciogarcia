@@ -7,7 +7,8 @@ var reqMap = {
     "/aleatorios.html": handlers.random,
     "/primos.html": handlers.primos,
     "/equacao.html": handlers.equacao,
-    "/xadrez.html": handlers.xadrez
+    "/xadrez.html": handlers.xadrez,
+    "/xadrez.json": handlers.xadrezJson
 };
 
 function route(pathname, request, response) {
